@@ -5,7 +5,7 @@ import obtenerUbicacion from '../pokeApi/obtenerUbicacion';
 
 export const NavBar = () => {
 
-  const {cerrarSesion, crearTodo, cambiarOrden, orden, todos} = useTodoStore();
+  const {cerrarSesion, crearTodo, cambiarOrden, orden, cambiarOrden2} = useTodoStore();
 
   const onCerrarSesion = () => {
     cerrarSesion();
@@ -20,7 +20,7 @@ export const NavBar = () => {
     crearTodo(nPokemon)
   }
 
-  const onCambiarOrdennn = () => {
+  const onCambiarOrden = () => {
 
       switch(orden){
           case 'ascendente':
@@ -32,6 +32,19 @@ export const NavBar = () => {
           break;
       }
   }
+
+  const onCambiarOrden2 = () => {
+
+    switch(orden){
+      case 'ascendente':
+        cambiarOrden2("descendente");
+      break;
+
+      case 'descendente':
+        cambiarOrden2("ascendente");
+      break;
+  }
+}
 
   return (
       <div className="flex items-center justify-between border-b bg-blue-400"
@@ -46,13 +59,24 @@ export const NavBar = () => {
 
         <button
           type="button"
-          onClick={onCambiarOrdennn}
+          onClick={onCambiarOrden}
           className="border border-indigo-500 bg-indigo-800 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
         >
-          Orden por Día: {(orden=="ascendente") ? 'ascendente' : 'descendente' }
+          Orden por Día: 
+          {(orden=="ascendente") ? ' ascendente' : ' descendente' }
         </button>
 
         <h3 className="text-white text-2xl font-bold ml-3">Mis Lista</h3>
+
+
+        <button
+          type="button"
+          onClick={onCambiarOrden2}
+          className="border border-indigo-500 bg-indigo-800 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
+        >
+          Orden por Estatus: 
+          {(orden=="ascendente") ? ' ascendente' : ' descendente' }
+        </button>
 
         <button
           type="button"

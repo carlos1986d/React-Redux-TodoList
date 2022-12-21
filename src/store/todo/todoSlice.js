@@ -52,6 +52,23 @@ export const todoSlice = createSlice({
             }
         },
 
+        onCambiarOrden2: (state, {payload}) => {
+
+            state.orden=payload
+
+            const ordenamiento = {true: 1, false: 2};
+
+            switch(payload){
+                case 'ascendente':
+                    state.todos.sort(((a, b) => ordenamiento[a.estatus] - ordenamiento[b.estatus]))
+                break;
+
+                case 'descendente':
+                    state.todos.sort(((a, b) => ordenamiento[b.estatus] - ordenamiento[a.estatus]))
+                break;
+            }
+        },
+
         onCerrarSesion: (state) => {
             state.Authenticated = false;
         },
@@ -71,5 +88,6 @@ export const {
     onCrearTodo,
     onCambiarEstatus,
     onCambiarOrden,
+    onCambiarOrden2,
 
 } = todoSlice.actions;

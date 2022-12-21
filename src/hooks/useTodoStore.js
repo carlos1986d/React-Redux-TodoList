@@ -6,6 +6,7 @@ import {
     onCrearTodo,
     onCambiarEstatus,
     onCambiarOrden,
+    onCambiarOrden2,
 
 } from "../store/todo/todoSlice";
 
@@ -29,6 +30,10 @@ export const useTodoStore = () => {
         dispatch(onCambiarOrden(nOrden))
     }
 
+    const cambiarOrden2 = (nOrden) => {
+        dispatch(onCambiarOrden2(nOrden))
+    }
+
     const iniciarSesion = () => {
         dispatch(onIniciarSesion())
     }
@@ -50,5 +55,6 @@ export const useTodoStore = () => {
         crearTodo,
         cambiarEstatus,
         cambiarOrden,
+        cambiarOrden2,
     }
 }
