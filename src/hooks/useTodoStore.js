@@ -1,40 +1,54 @@
 import { useDispatch, useSelector } from "react-redux"
-import { onCerrarSesion, onIniciarSesion, onChangeNombre, onChangeUbicacion} from "../store/todo/todoSlice";
+
+import { 
+    onCerrarSesion, 
+    onIniciarSesion, 
+    onCrearTodo,
+    onCambiarEstatus,
+    onCambiarOrden,
+
+} from "../store/todo/todoSlice";
 
 export const useTodoStore = () => {
 
     const dispatch = useDispatch();
 
     const {
-        Authenticated, nombre, ubicacion
+        Authenticated, todos, orden
     } = useSelector(state => state.todo);
+
+    const crearTodo = (nPokemon) => {
+        dispatch(onCrearTodo(nPokemon))
+    }
 
     const cerrarSesion = () => {
         dispatch(onCerrarSesion())
+    }
+
+    const cambiarOrden = (nOrden) => {
+        dispatch(onCambiarOrden(nOrden))
     }
 
     const iniciarSesion = () => {
         dispatch(onIniciarSesion())
     }
 
-    const changeNombre = (nuevoNombre) => {
-        dispatch(onChangeNombre(nuevoNombre))
+    const cambiarEstatus = (pokemon) => {
+        dispatch(onCambiarEstatus(pokemon))
     }
 
-    const changeUbicacion = (nuevaUbicacion) => {
-        dispatch(onChangeUbicacion(nuevaUbicacion))
-    }
 
     return {
         /* Propiedades */
         Authenticated,
-        nombre,
-        ubicacion,
+        todos,
+        orden,
 
         /* Métodos */
         cerrarSesion,
         iniciarSesion,
-        changeNombre,
-        changeUbicacion,
+        crearTodo,
+        cambiarEstatus,
+        cambiarOrden,
     }
 }

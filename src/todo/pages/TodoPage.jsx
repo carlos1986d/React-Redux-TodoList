@@ -1,25 +1,34 @@
 import React from 'react'
 import { NavBar } from '../../components/NavBar'
-import { TodoForm } from '../../components/TodoForm'
 import { TodoList } from '../../components/TodoList'
-import { TodoDelete } from '../../components/TodoDelete'
-import { useUiStore } from '../../hooks/useUiStore'
+import { useTodoStore } from '../../hooks/useTodoStore'
 
 export const TodoPage = () => {
 
-  const {FormOpen} = useUiStore();
+  const {todos, orden} = useTodoStore();
 
-  const eliminar = false;
+  console.log(orden)
   
   return (
     <>
       <NavBar />
       {
-        (FormOpen) 
-        ? <TodoForm />
-        : (eliminar)
-          ? <TodoDelete />
-          : <TodoList />
+
+        
+
+        todos.map((id)=> {
+
+          return (
+            <li key={id.nombre.toString()}>
+              <TodoList 
+                nombre={id.nombre.toString()} 
+                ubicacion={id.ubicacion.toString()}
+                estatus={id.estatus}      
+                dias={id.dias}        
+              />
+            </li>
+          )
+        })
       }
     </>
   )
